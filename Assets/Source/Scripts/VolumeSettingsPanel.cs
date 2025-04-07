@@ -4,34 +4,19 @@ using UnityEngine.UI;
 
 public class VolumeSettingsPanel : MonoBehaviour
 {
-    [SerializeField] private AudioMixerGroup _masterMixer;
-    [SerializeField] private AudioMixerGroup _soundsMixer;
-    [SerializeField] private AudioMixerGroup _musicMixer;
+    [SerializeField] private AudioMixer _audioMixer;
 
-    public void ChangeMasterVolume(Slider slider)
+    public void ChangeVolume(Slider slider)
     {
-        _masterMixer.audioMixer.SetFloat("MasterVolume", Mathf.Log10(slider.value) * 20);
-    }
-
-    public void ChangeSoundButtonsVolume(Slider slider)
-    {
-        _soundsMixer.audioMixer.SetFloat("SoundsVolume", Mathf.Log10(slider.value) * 20);
-    }
-
-    public void ChangeBackgroundMusicVolume(Slider slider)
-    {
-        _musicMixer.audioMixer.SetFloat("MusicVolume", Mathf.Log10(slider.value) * 20);
-    }
-    
-    public void ToggleVolume(Toggle toggle)
-    {
-        if (toggle.isOn)
+        string mixerGroupName = slider.name;
+        
+        if (slider.value == 0)
         {
-            _musicMixer.audioMixer.SetFloat("MasterVolume", 0);
+            _audioMixer.SetFloat(mixerGroupName, -80);
         }
         else
         {
-            _musicMixer.audioMixer.SetFloat("MasterVolume", -79);
+            _audioMixer.SetFloat(mixerGroupName, Mathf.Log10(slider.value) * 20);
         }
     }
 }
