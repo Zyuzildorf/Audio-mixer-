@@ -15,12 +15,12 @@ public class ButtonsPlayer : MonoBehaviour
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(delegate { OnButtonPressed(); });
+        _button.onClick.AddListener(OnButtonPressed);
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(delegate { OnButtonPressed(); });
+        _button.onClick.RemoveListener(OnButtonPressed);
     }
 
     public void OnButtonPressed()

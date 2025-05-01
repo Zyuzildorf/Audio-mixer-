@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -6,39 +7,41 @@ using UnityEngine.UI;
 public class Toggler : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup _masterMixer;
+    [SerializeField] private VolumeSettings _masterVolumeSettings;
 
-    private const string MasterMixerGroup = "Master";
-
+    private bool _isMuted = false;
     private Toggle _toggle;
-    private int _maxVolume;
-    private int _minVolume;
 
+    public bool IsMuted => _isMuted;
+    public event Action Muted; 
+    public event Action Unmuted; 
+    
     private void Awake()
     {
         _toggle = GetComponent<Toggle>();
-        _maxVolume = 0;
-        _minVolume = -80;
     }
 
     private void OnEnable()
     {
-        _toggle.onValueChanged.AddListener(delegate { ToggleVolume(); });
+        _toggle.onValueChanged.AddListener(ToggleVolume);
     }
 
     private void OnDisable()
     {
-        _toggle.onValueChanged.RemoveListener(delegate { ToggleVolume(); });
+        _toggle.onValueChanged.RemoveListener(ToggleVolume);
     }
 
-    public void ToggleVolume()
+    public void ToggleVolume(bool isOn)
     {
-        if (_toggle.isOn)
+        if (isOn)
         {
-            _masterMixer.audioMixer.SetFloat(MasterMixerGroup, _maxVolume);
+            _isMuted = false;
+            Unmuted?.Invoke();
         }
         else
         {
-            _masterMixer.audioMixer.SetFloat(MasterMixerGroup, _minVolume);
+            _isMuted = true;
+            Muted?.Invoke();
         }
     }
 }

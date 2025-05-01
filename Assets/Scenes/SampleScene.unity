@@ -1583,6 +1583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: c83095a10f70d3846acba5403a6a8406, type: 2}
+  _toggler: {fileID: 1066720049}
+  _mixerGroupName: Music
 --- !u!1 &568858566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1801,6 +1803,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: c83095a10f70d3846acba5403a6a8406, type: 2}
+  _toggler: {fileID: 1066720049}
+  _mixerGroupName: Master
 --- !u!1 &619298444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +2735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterMixer: {fileID: 24300002, guid: c83095a10f70d3846acba5403a6a8406, type: 2}
+  _masterVolumeSettings: {fileID: 598454904}
 --- !u!1 &1073104293
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,6 +4411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: c83095a10f70d3846acba5403a6a8406, type: 2}
+  _toggler: {fileID: 1066720049}
+  _mixerGroupName: Sounds
 --- !u!1 &2047626256
 GameObject:
   m_ObjectHideFlags: 0
